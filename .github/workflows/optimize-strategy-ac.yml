@@ -1,0 +1,38 @@
+# yamllint disable rule:line-length
+---
+name: Optimize Strategy AC
+
+on:
+  push:
+    branches:
+      - 'optimize-strategy-ac*'
+    paths-ignore:
+      - '*.json'
+      - '*.md'
+      - '*.txt'
+      - '.git*'
+      - '.yamllint'
+      - 'LICENSE'
+
+jobs:
+  SignalMethod:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      - name: Optimize AC1 SignalMethod
+        uses: ea31337/mql-tester-action@master
+        with:
+          TestExpert: EA31337
+          OptOptimize: true
+          OptTrace: true
+          BtMonths: 1
+          BtYears: 2018
+          BtSpread: 10
+          RunOnError: 'tree $WORKDIR'
+          RunOnSet: "set_opt_params AC1_SignalMethod -1 1"
+          RunOnWarning: 'show_logs && parse_results $@ && exit 0'
+          SetFile: '${{ github.workspace }}/docker/optimization/lite/Strategies/AC/SignalMethod/sets/EURUSD/EA31337-AC1_SignalMethod.set'
+          SetParams: 'AC1_SignalMethod'
+          TestPeriod: "M30"
