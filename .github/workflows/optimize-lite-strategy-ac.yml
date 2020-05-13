@@ -1,6 +1,6 @@
 # yamllint disable rule:line-length
 ---
-name: Optimize Strategy AC
+name: Lite Optimize Strategy AC
 
 on:
   push:
