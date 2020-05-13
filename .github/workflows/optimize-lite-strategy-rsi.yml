@@ -1,0 +1,55 @@
+# yamllint disable rule:line-length
+---
+name: Lite Optimize Strategy RSI
+
+on:
+  push:
+    branches:
+      - 'optimize-lite-strategy-rsi*'
+    paths-ignore:
+      - '*.json'
+      - '*.md'
+      - '*.txt'
+      - '.git*'
+      - '.yamllint'
+      - 'LICENSE'
+
+jobs:
+  SignalMethod:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      - name: Optimize RSI1 SignalMethod
+        uses: ea31337/mql-tester-action@master
+        with:
+          TestExpert: EA31337
+          OptOptimize: true
+          OptTrace: true
+          BtDays: "1-14"
+          BtMonths: 1
+          BtYears: 2018
+          BtSpread: 10
+          RunOnError: 'tree $WORKDIR'
+          RunOnSet: "set_opt_params RSI1_SignalMethod -63 63"
+          RunOnWarning: 'show_logs && parse_results $@ && exit 0'
+          SetFile: '${{ github.workspace }}/docker/optimization/lite/Strategies/RSI/SignalMethod/sets/EURUSD/EA31337-RSI1_SignalMethod.set'
+          SetParams: 'RSI1_SignalMethod'
+          TestPeriod: "M30"
+      - name: Optimize RSI5 SignalMethod
+        uses: ea31337/mql-tester-action@master
+        with:
+          TestExpert: EA31337
+          OptOptimize: true
+          OptTrace: true
+          BtDays: "1-14"
+          BtMonths: 1
+          BtYears: 2018
+          BtSpread: 10
+          RunOnError: 'tree $WORKDIR'
+          RunOnSet: "set_opt_params RSI5_SignalMethod -63 63"
+          RunOnWarning: 'show_logs && parse_results $@ && exit 0'
+          SetFile: '${{ github.workspace }}/docker/optimization/lite/Strategies/RSI/SignalMethod/sets/EURUSD/EA31337-RSI5_SignalMethod.set'
+          SetParams: 'RSI5_SignalMethod'
+          TestPeriod: "M30"
