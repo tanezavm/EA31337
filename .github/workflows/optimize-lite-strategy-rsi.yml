@@ -26,7 +26,6 @@ jobs:
         with:
           TestExpert: EA31337
           OptOptimize: true
-          OptTrace: true
           BtDays: "1-14"
           BtMonths: 1
           BtYears: 2018
@@ -38,6 +37,55 @@ jobs:
           TestLimitOpts: "maxdrawdown_enable=1,maxdrawdown=80"
           TestPeriod: 'M30'
           TestReportName: 'EA31337-RSI_Period_M1'
+      - name: Optimize RSI5 Period
+        uses: ea31337/mql-tester-action@master
+        with:
+          TestExpert: EA31337
+          OptTrace: true
+          OptOptimize: true
+          BtDays: "1-14"
+          BtMonths: 1
+          BtYears: 2018
+          BtSpread: 10
+          RunOnSet: 'set_opt_params RSI_Period_M5 $(get_max 2 $(bc <<< "$(input_get RSI_Period_M5) - 2 * 4")) $(bc <<< "$(input_get RSI_Period_M5) + 2 * 4") 2'
+          RunOnWarning: 'show_logs && parse_results $@ && exit 0'
+          SetFile: '${{ github.workspace }}/docker/optimization/lite/Strategies/RSI/Indicator/sets/EURUSD/EA31337-RSI_Period_M5.set'
+          SetParams: 'RSI_Period_M5'
+          TestLimitOpts: "maxdrawdown_enable=1,maxdrawdown=80"
+          TestPeriod: 'M30'
+          TestReportName: 'EA31337-RSI_Period_M5'
+      - name: Optimize RSI15 Period
+        uses: ea31337/mql-tester-action@master
+        with:
+          TestExpert: EA31337
+          OptOptimize: true
+          BtDays: "1-14"
+          BtMonths: 1
+          BtYears: 2018
+          BtSpread: 10
+          RunOnSet: 'set_opt_params RSI_Period_M15 $(get_max 2 $(bc <<< "$(input_get RSI_Period_M15) - 2 * 4")) $(bc <<< "$(input_get RSI_Period_M15) + 2 * 4") 2'
+          RunOnWarning: 'show_logs && parse_results $@ && exit 0'
+          SetFile: '${{ github.workspace }}/docker/optimization/lite/Strategies/RSI/Indicator/sets/EURUSD/EA31337-RSI_Period_M15.set'
+          SetParams: 'RSI_Period_M15'
+          TestLimitOpts: "maxdrawdown_enable=1,maxdrawdown=80"
+          TestPeriod: 'M30'
+          TestReportName: 'EA31337-RSI_Period_M15'
+      - name: Optimize RSI30 Period
+        uses: ea31337/mql-tester-action@master
+        with:
+          TestExpert: EA31337
+          OptOptimize: true
+          BtDays: "1-14"
+          BtMonths: 1
+          BtYears: 2018
+          BtSpread: 10
+          RunOnSet: 'set_opt_params RSI_Period_M30 $(get_max 2 $(bc <<< "$(input_get RSI_Period_M30) - 2 * 4")) $(bc <<< "$(input_get RSI_Period_M30) + 2 * 4") 2'
+          RunOnWarning: 'show_logs && parse_results $@ && exit 0'
+          SetFile: '${{ github.workspace }}/docker/optimization/lite/Strategies/RSI/Indicator/sets/EURUSD/EA31337-RSI_Period_M30.set'
+          SetParams: 'RSI_Period_M30'
+          TestLimitOpts: "maxdrawdown_enable=1,maxdrawdown=80"
+          TestPeriod: 'M30'
+          TestReportName: 'EA31337-RSI_Period_M30'
   SignalMethod:
     runs-on: ubuntu-latest
     needs: Period
@@ -50,7 +98,6 @@ jobs:
         with:
           TestExpert: EA31337
           OptOptimize: true
-          OptTrace: true
           BtDays: "1-14"
           BtMonths: 1
           BtYears: 2018
@@ -66,7 +113,6 @@ jobs:
         with:
           TestExpert: EA31337
           OptOptimize: true
-          OptTrace: true
           BtDays: "1-14"
           BtMonths: 1
           BtYears: 2018
