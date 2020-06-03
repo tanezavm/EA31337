@@ -27,6 +27,9 @@ jobs:
         with:
           TestExpert: EA31337
           OptOptimize: true
+          OptVerbose: true
+          OptFormatBrief: true
+          OptFormatJson: true
           BtDays: "1-14"
           BtMonths: 1
           BtYears: 2018
@@ -43,8 +46,10 @@ jobs:
         uses: fx31337/mql-tester-action@master
         with:
           TestExpert: EA31337
-          OptTrace: true
           OptOptimize: true
+          OptVerbose: true
+          OptFormatBrief: true
+          OptFormatJson: true
           BtDays: "1-14"
           BtMonths: 1
           BtYears: 2018
@@ -61,6 +66,9 @@ jobs:
         with:
           TestExpert: EA31337
           OptOptimize: true
+          OptVerbose: true
+          OptFormatBrief: true
+          OptFormatJson: true
           BtDays: "1-14"
           BtMonths: 1
           BtYears: 2018
@@ -77,6 +85,9 @@ jobs:
         with:
           TestExpert: EA31337
           OptOptimize: true
+          OptVerbose: true
+          OptFormatBrief: true
+          OptFormatJson: true
           BtDays: "1-14"
           BtMonths: 1
           BtYears: 2018
@@ -100,7 +111,10 @@ jobs:
         with:
           TestExpert: EA31337
           OptOptimize: true
-          BtDays: "1-14"
+          OptVerbose: true
+          OptFormatBrief: true
+          OptFormatJson: true
+          BtDays: "1-5"
           BtMonths: 1
           BtYears: 2018
           BtSpread: 10
@@ -115,7 +129,10 @@ jobs:
         with:
           TestExpert: EA31337
           OptOptimize: true
-          BtDays: "1-14"
+          OptVerbose: true
+          OptFormatBrief: true
+          OptFormatJson: true
+          BtDays: "1-5"
           BtMonths: 1
           BtYears: 2018
           BtSpread: 10
