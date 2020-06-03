@@ -37,6 +37,7 @@ jobs:
           RunOnStart: "ls -la && id && stat /github/home"
           RunOnSet: 'set_opt_params RSI_Period_M1 $(get_max 2 $(bc <<< "$(input_get RSI_Period_M1) - 2 * 4")) $(bc <<< "$(input_get RSI_Period_M1) + 2 * 4") 2'
           RunOnWarning: 'show_logs && parse_results $@ && exit 0'
+          RunOnSuccess: 'git diff'
           SetFile: '${{ github.workspace }}/docker/optimization/lite/Strategies/RSI/Indicator/sets/EURUSD/EA31337-RSI_Period_M1.set'
           SetParams: 'RSI_Period_M1'
           TestLimitOpts: "maxdrawdown_enable=1,maxdrawdown=80"
@@ -56,6 +57,7 @@ jobs:
           BtSpread: 10
           RunOnSet: 'set_opt_params RSI_Period_M5 $(get_max 2 $(bc <<< "$(input_get RSI_Period_M5) - 2 * 4")) $(bc <<< "$(input_get RSI_Period_M5) + 2 * 4") 2'
           RunOnWarning: 'show_logs && parse_results $@ && exit 0'
+          RunOnSuccess: 'git diff'
           SetFile: '${{ github.workspace }}/docker/optimization/lite/Strategies/RSI/Indicator/sets/EURUSD/EA31337-RSI_Period_M5.set'
           SetParams: 'RSI_Period_M5'
           TestLimitOpts: "maxdrawdown_enable=1,maxdrawdown=80"
@@ -75,6 +77,7 @@ jobs:
           BtSpread: 10
           RunOnSet: 'set_opt_params RSI_Period_M15 $(get_max 2 $(bc <<< "$(input_get RSI_Period_M15) - 2 * 4")) $(bc <<< "$(input_get RSI_Period_M15) + 2 * 4") 2'
           RunOnWarning: 'show_logs && parse_results $@ && exit 0'
+          RunOnSuccess: 'git diff'
           SetFile: '${{ github.workspace }}/docker/optimization/lite/Strategies/RSI/Indicator/sets/EURUSD/EA31337-RSI_Period_M15.set'
           SetParams: 'RSI_Period_M15'
           TestLimitOpts: "maxdrawdown_enable=1,maxdrawdown=80"
@@ -94,6 +97,7 @@ jobs:
           BtSpread: 10
           RunOnSet: 'set_opt_params RSI_Period_M30 $(get_max 2 $(bc <<< "$(input_get RSI_Period_M30) - 2 * 4")) $(bc <<< "$(input_get RSI_Period_M30) + 2 * 4") 2'
           RunOnWarning: 'show_logs && parse_results $@ && exit 0'
+          RunOnSuccess: 'git diff'
           SetFile: '${{ github.workspace }}/docker/optimization/lite/Strategies/RSI/Indicator/sets/EURUSD/EA31337-RSI_Period_M30.set'
           SetParams: 'RSI_Period_M30'
           TestLimitOpts: "maxdrawdown_enable=1,maxdrawdown=80"
@@ -118,9 +122,10 @@ jobs:
           BtMonths: 1
           BtYears: 2018
           BtSpread: 10
-          RunOnError: 'tree $WORKDIR'
+          RunOnError: 'show_logs'
+          RunOnWarning: 'show_logs'
           RunOnSet: "set_opt_params RSI1_SignalMethod -63 63"
-          RunOnWarning: 'show_logs && parse_results $@ && exit 0'
+          RunOnSuccess: 'git diff'
           SetFile: '${{ github.workspace }}/docker/optimization/lite/Strategies/RSI/SignalMethod/sets/EURUSD/EA31337-RSI1_SignalMethod.set'
           SetParams: 'RSI1_SignalMethod'
           TestPeriod: "M30"
@@ -136,9 +141,10 @@ jobs:
           BtMonths: 1
           BtYears: 2018
           BtSpread: 10
-          RunOnError: 'tree $WORKDIR'
+          RunOnError: 'show_logs'
           RunOnSet: "set_opt_params RSI5_SignalMethod -63 63"
           RunOnWarning: 'show_logs && parse_results $@ && exit 0'
+          RunOnSuccess: 'git diff'
           SetFile: '${{ github.workspace }}/docker/optimization/lite/Strategies/RSI/SignalMethod/sets/EURUSD/EA31337-RSI5_SignalMethod.set'
           SetParams: 'RSI5_SignalMethod'
           TestPeriod: "M30"
