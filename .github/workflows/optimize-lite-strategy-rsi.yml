@@ -21,8 +21,9 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: 'recursive'
+          # path: /opt
       - name: Optimize RSI1 Period
-        uses: ea31337/mql-tester-action@master
+        uses: fx31337/mql-tester-action@master
         with:
           TestExpert: EA31337
           OptOptimize: true
@@ -30,6 +31,7 @@ jobs:
           BtMonths: 1
           BtYears: 2018
           BtSpread: 10
+          RunOnStart: "ls -la && id && stat /github/home"
           RunOnSet: 'set_opt_params RSI_Period_M1 $(get_max 2 $(bc <<< "$(input_get RSI_Period_M1) - 2 * 4")) $(bc <<< "$(input_get RSI_Period_M1) + 2 * 4") 2'
           RunOnWarning: 'show_logs && parse_results $@ && exit 0'
           SetFile: '${{ github.workspace }}/docker/optimization/lite/Strategies/RSI/Indicator/sets/EURUSD/EA31337-RSI_Period_M1.set'
@@ -38,7 +40,7 @@ jobs:
           TestPeriod: 'M30'
           TestReportName: 'EA31337-RSI_Period_M1'
       - name: Optimize RSI5 Period
-        uses: ea31337/mql-tester-action@master
+        uses: fx31337/mql-tester-action@master
         with:
           TestExpert: EA31337
           OptTrace: true
@@ -55,7 +57,7 @@ jobs:
           TestPeriod: 'M30'
           TestReportName: 'EA31337-RSI_Period_M5'
       - name: Optimize RSI15 Period
-        uses: ea31337/mql-tester-action@master
+        uses: fx31337/mql-tester-action@master
         with:
           TestExpert: EA31337
           OptOptimize: true
@@ -71,7 +73,7 @@ jobs:
           TestPeriod: 'M30'
           TestReportName: 'EA31337-RSI_Period_M15'
       - name: Optimize RSI30 Period
-        uses: ea31337/mql-tester-action@master
+        uses: fx31337/mql-tester-action@master
         with:
           TestExpert: EA31337
           OptOptimize: true
@@ -94,7 +96,7 @@ jobs:
         with:
           submodules: 'recursive'
       - name: Optimize RSI1 SignalMethod
-        uses: ea31337/mql-tester-action@master
+        uses: fx31337/mql-tester-action@master
         with:
           TestExpert: EA31337
           OptOptimize: true
@@ -109,7 +111,7 @@ jobs:
           SetParams: 'RSI1_SignalMethod'
           TestPeriod: "M30"
       - name: Optimize RSI5 SignalMethod
-        uses: ea31337/mql-tester-action@master
+        uses: fx31337/mql-tester-action@master
         with:
           TestExpert: EA31337
           OptOptimize: true
