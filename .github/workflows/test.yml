@@ -224,7 +224,7 @@ jobs:
 
       - name: Get the current branch name
         shell: bash
-        run: >
+        run: >-
           echo "##[set-output name=branch;]"
           "$(echo ${GITHUB_REF#refs/heads/})"
         id: myref
